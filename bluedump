@@ -1,0 +1,32 @@
+#!/bin/bash
+# /etc/init.d/bluedump
+
+### BEGIN INIT INFO
+# Provides:          bluedump
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Example initscript
+# Description:       This service is used to listen to bluetooth in the area
+### END INIT INFO
+
+
+case "$1" in 
+    start)
+        echo "Starting Bluedump"
+        /opt/bluedump/bluedump.service &
+        ;;
+    stop)
+        echo "Stopping Bluedump"
+        PID=$(cat /opt/bluedump/bluedump.pid)
+        kill -- -$(ps -o pgid= $PID | grep -o [0-9]*) && \
+        rm -f /opt/bluedump/bluedump.pid
+        ;;
+    *)
+        echo "Usage: /etc/init.d/bluedump start|stop"
+        exit 1
+        ;;
+esac
+
+exit 0

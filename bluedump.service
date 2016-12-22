@@ -1,0 +1,8 @@
+echo $$ > /opt/bluedump/bluedump.pid
+while true; do
+  if [[ $(find /var/log/bluedump/bluetooth.log -type f -size +10000000c 2>/dev/null) ]]; then
+    savelog -n -c 10 -l /var/log/bluedump/bluetooth.log
+  fi
+  /opt/bluedump/bluedump.sh
+  sleep 2m
+done
