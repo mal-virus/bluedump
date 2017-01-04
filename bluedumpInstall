@@ -1,8 +1,8 @@
-# Update System
-sudo apt-get update
-sudo apt-get upgrade -y
+#!/bin/sh
+set -e
 
 # Install the necessary files for bluetooth reading
+sudo apt-get update
 sudo apt-get -y install bluez
 
 # Create our directories
