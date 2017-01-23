@@ -5,13 +5,13 @@ set -e
 sudo apt-get update
 sudo apt-get -y install bluez
 
-# Create our directories
-sudo mkdir /var/log/bluedump /opt/bluedump
-sudo chown $USER /var/log/bluedump /opt/bluedump
+# Create our log directory
+sudo mkdir /var/log/bluedump
 
 # Install Bluedump as a service
 curl -L https://github.com/mal-virus/bluedump/raw/master/bluedump.tar.gz -o /tmp/bluedump.tar.gz
-sudo tar -xzf /tmp/bluedump.tar.gz -C /opt/bluedump
+sudo tar -xzf /tmp/bluedump.tar.gz -C /opt
+sudo chown -R $USER /var/log/bluedump /opt/bluedump
 sudo chmod +x /opt/bluedump/*
 sudo mv /opt/bluedump/bluedump /etc/init.d/bluedump
 sudo chown root /etc/init.d/bluedump
