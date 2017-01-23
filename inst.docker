@@ -3,7 +3,7 @@ set -e
 
 #check that everything is correct
 version=$1
-[[ -z "$version" ]] || {
+[[ -n "$version" ]] || {
   echo "Must include version of docker-compose as parameter"
   exit 1
 }
