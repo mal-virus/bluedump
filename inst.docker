@@ -9,7 +9,7 @@ version=$1
 }
 
 bits=`uname -m`
-[[ $bits == "*64" || $bits == "armv6l" || $bits == "armv7l" ]] || {
+[[ $bits != "*64" && $bits != "armv6l" && $bits != "armv7l" ]] || {
   echo "Machine must be 64 bits or a respberry pi"
   exit 1
 }
